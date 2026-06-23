@@ -11,7 +11,7 @@ from urllib.parse import urlparse
 import httpx
 
 try:
-    from mcp_ollama_python.models import (
+    from modell.ollama.src.mcp_ollama_python.models import (
         GenerationOptions,
         ChatMessage,
         Tool,
@@ -27,6 +27,7 @@ logger = logging.getLogger(__name__)
 # Constants
 DEFAULT_HOST = "http://127.0.0.1:11434"
 DEFAULT_TIMEOUT = 300.0  # 5 minutes
+DEFAULT_NUM_PREDICT = 25
 MODEL_NAME_PATTERN = re.compile(r"^[a-zA-Z0-9][a-zA-Z0-9._:-]*$")
 
 
@@ -454,8 +455,7 @@ class OllamaClient:
         self._validate_model_name(model)
         self._validate_non_empty_string(prompt, "prompt")
         data = {"model": model, "prompt": prompt, "stream": stream}
-        if options:
-            data["options"] = options.model_dump(exclude_unset=True)
+        data["options"] = self._build_generation_options(options)
         return await self._post("/api/generate", data)
 
     async def chat(
@@ -494,9 +494,23 @@ class OllamaClient:
         }
         if tools:
             data["tools"] = [tool.model_dump() for tool in tools]
-        if options:
-            data["options"] = options.model_dump(exclude_unset=True)
+        data["options"] = self._build_generation_options(options)
         return await self._post("/api/chat", data)
+
+    def _build_generation_options(
+        self, options: Optional[GenerationOptions] = None
+    ) -> Dict[str, Any]:
+        """
+        Build generation options with a conservative default output cap.
+
+        If callers do not specify `num_predict`, default to 25 tokens to keep
+        baseline token usage low across models.
+        """
+        option_data: Dict[str, Any] = {}
+        if options:
+            option_data = options.model_dump(exclude_unset=True)
+        option_data.setdefault("num_predict", DEFAULT_NUM_PREDICT)
+        return option_data
 
     async def embed(
         self, model: str, input_text: Union[str, List[str]]

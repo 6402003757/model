@@ -4,7 +4,7 @@ Tests for models.py - Core types and enums
 
 import pytest
 
-from mcp_ollama_python.models import (
+from modell.ollama.src.mcp_ollama_python.models import (
     ChatMessage,
     GenerationOptions,
     MessageRole,

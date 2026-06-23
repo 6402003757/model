@@ -1,3 +1,4 @@
+
 """
 Tool autoloader - dynamically discovers and loads tools from the tools directory
 """
@@ -9,8 +10,8 @@ import pkgutil
 from typing import Any, Callable, Dict, List, Optional
 
 try:
-    from mcp_ollama_python.ollama_client import OllamaClient
-    from mcp_ollama_python.models import ToolDefinition, ResponseFormat
+    from modell.ollama.src.mcp_ollama_python.ollama_client import OllamaClient
+    from modell.ollama.src.mcp_ollama_python.models import ToolDefinition, ResponseFormat
 except ImportError:
     from .ollama_client import OllamaClient
     from .models import ToolDefinition, ResponseFormat

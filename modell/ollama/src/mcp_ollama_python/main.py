@@ -1,3 +1,4 @@
+
 """
 Ollama MCP Server - Main entry point
 """
@@ -17,8 +18,8 @@ logger = logging.getLogger(__name__)
 
 # Use absolute imports so PyInstaller/standalone execution works even when __package__ is not set
 try:
-    from mcp_ollama_python.server import OllamaMCPServer
-    from mcp_ollama_python.ollama_client import OllamaClient
+    from modell.ollama.src.mcp_ollama_python.server import OllamaMCPServer
+    from modell.ollama.src.mcp_ollama_python.ollama_client import OllamaClient
 except ImportError:
     from .server import OllamaMCPServer
     from .ollama_client import OllamaClient

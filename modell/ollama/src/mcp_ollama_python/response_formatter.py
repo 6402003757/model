@@ -7,7 +7,7 @@ import logging
 from typing import Any, Dict, List, Optional, Set
 
 try:
-    from mcp_ollama_python.models import ResponseFormat
+    from modell.ollama.src.mcp_ollama_python.models import ResponseFormat
 except ImportError:
     from .models import ResponseFormat
 

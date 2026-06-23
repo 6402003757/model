@@ -19,8 +19,8 @@ from typing import Dict, Optional
 
 import psutil
 
-from mcp_ollama_python.ollama_client import OllamaClient
-from mcp_ollama_python.server import OllamaMCPServer
+from modell.ollama.src.mcp_ollama_python.ollama_client import OllamaClient
+from modell.ollama.src.mcp_ollama_python.server import OllamaMCPServer
 
 # Data directory in user home
 DATA_DIR = Path.home() / ".mcp-ollama-python"
@@ -511,7 +511,7 @@ class MCPInteractive:
         print("\nInitializing server to discover tools...")
 
         try:
-            from mcp_ollama_python.autoloader import discover_tools_with_handlers
+            from modell.ollama.src.mcp_ollama_python.autoloader import discover_tools_with_handlers
 
             async def get_tools():
                 registry = await discover_tools_with_handlers()

@@ -5,8 +5,8 @@ Get a Spanish poem using local MCP Ollama server with gpt-oss model
 import asyncio
 import json
 
-from mcp_ollama_python.models import ChatMessage
-from mcp_ollama_python.ollama_client import OllamaClient
+from modell.ollama.src.mcp_ollama_python.models import ChatMessage
+from modell.ollama.src.mcp_ollama_python.ollama_client import OllamaClient
 
 
 async def get_spanish_poem():

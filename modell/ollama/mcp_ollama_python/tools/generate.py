@@ -96,7 +96,11 @@ tool_definition = ToolDefinition(
                     "temperature": {"type": "number", "minimum": 0, "maximum": 2},
                     "top_p": {"type": "number", "minimum": 0, "maximum": 1},
                     "top_k": {"type": "integer", "minimum": 0},
-                    "num_predict": {"type": "integer", "minimum": 1},
+                    "num_predict": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "default": 25,
+                    },
                     "repeat_penalty": {"type": "number", "minimum": 0},
                     "seed": {"type": "integer"},
                     "stop": {"type": "array", "items": {"type": "string"}},

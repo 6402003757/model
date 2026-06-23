@@ -1,3 +1,4 @@
+
 """
 Test script to demonstrate new MCP Ollama capabilities:
 - Resources support
@@ -7,7 +8,7 @@ Test script to demonstrate new MCP Ollama capabilities:
 
 import asyncio
 
-from src.mcp_ollama_python.server import OllamaMCPServer
+from modell.ollama.src.mcp_ollama_python.server import OllamaMCPServer
 
 
 async def test_resources():
