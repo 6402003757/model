@@ -23,7 +23,7 @@ mcp-interactive = "mcp_ollama_python.scripts.mcp_interactive:main"
 mcp-server-control = "mcp_ollama_python.scripts.server_control:main"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^8.0.0"
+pytest = ">=8,<10"
 pytest-asyncio = "^0.23.0"
 pyinstaller = "^6.18.0"
 pre-commit = "^4.5.1"
